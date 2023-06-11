@@ -1,0 +1,83 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <style>
+    .div1 {
+        width: 240px;
+        height: 75px;
+        padding: 10px;
+        border: 2px solid rgb(13, 12, 12);
+        background-color: #ebe5e5;
+    }
+     
+    p {
+        font-size: 20px;
+        font-weight: bold;
+        color: orange;
+    }
+     
+    .gfg {
+        font-size: 30px;
+        color: green;
+        font-weight: bold;
+    }
+    </style>
+</head>
+
+<body>
+    
+    <div class="gfg">Drag and Drop using HTML,CSS & JS</div>
+     
+<p>Drag and Drop items from 1<sup>st</sup> container</p>
+ 
+ 
+    <div class="div1"
+         ondrop="dragDrop(event)"
+         ondragover="allowDrop(event)">
+     <img id="drag1"
+          src="image.png.jfif"
+          draggable="true"
+          ondragstart="dragStart(event)"
+          width="240"
+          height="70">
+       
+         <!-- <p id="drag1"
+        draggable="true"
+        ondragstart="dragpoint(event)">
+        Drag and Drop is very comman feature></p> -->
+    
+         </div>
+    <br>
+    <div class="div1"
+         ondrop="dragDrop(event)"
+         ondragover="allowDrop(event)">
+    </div>
+    <br>
+    <button onclick="resetContainers()">Reset</button>
+
+    <script>
+        //Allow drop event
+            function allowDrop(even) {
+                even.preventDefault();
+            }
+         //Drag start event
+            function dragStart(even) {
+                even.dataTransfer.setData("text", even.target.id);
+                even.target.classList.add('dragging');
+            }
+        //Drag End event
+            function dragEnd(even){
+                even.target.classList.remove('dragging');
+        
+            }
+         //Drop event
+            function dragDrop(even) {
+                even.preventDefault();
+                var data = even.dataTransfer.getData("text");
+                even.target.appendChild(document.getElementById(data));
+            }
+            
+            
+            </script>
+</body>
+</html>
